@@ -46,24 +46,25 @@ class NGLOperationShadowV99:
     def generate_message_pool(self) -> list:
         """Generate comprehensive message pool."""
         return [
-            "matiin aja ngl lu bos",
-            "ngapain buat gituan?",
-            "caper bet dah",
-            "apaan sih norak banget",
-            "gausah sok sibuk dah",
-            "seriusan bikin beginian?",
-            "alay parah wkwk",
-            "lebay amat sumpah",
-            "buat apaan coba",
-            "gak penting banget asli",
-            "cari perhatian doang tuh",
-            "udah basi trik gini",
-            "bodo amat lah ah",
-            "kapan dewasanya nih?",
-            "gaya lu gitu mulu",
-            "kepo amat sih bro",
-            "skip aja, ngabisin kuota",
-            "ntar juga ilang tren-nya"
+            "just turn it off, bro",
+            "why even make that?",
+            "attention seeker much",
+            "so cringe omg",
+            "stop acting busy",
+            "you serious with this?",
+            "such a tryhard lol",
+            "way too extra man",
+            "what's the point of this",
+            "totally useless tbh",
+            "just fishing for clout",
+            "old trick, so lame",
+            "nobody cares anyway",
+            "when will you grow up?",
+            "same lame style again",
+            "so nosy, bro",
+            "skip, waste of data",
+            "straight up trash",
+            "that trend's dead soon"
         ]
     
     def intelligent_delay(self):
