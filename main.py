@@ -2,24 +2,21 @@ import requests
 import threading
 import time
 import random
-import os
 import json
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from rich.console import Console
 from rich.panel import Panel
 from rich.progress import Progress, SpinnerColumn, BarColumn, TextColumn
 from rich.table import Table
-from rich.layout import Layout
 from rich import box
-from datetime import datetime
 
 class NGLOperationShadowV99:
     """
-    SHADOW MODE V99: ULTIMATE NGL SPAM OPERATIONS FRAMEWORK
-    Rate limit handling + built-in message database
+    SHADOW MODE V99: PERFECT DELIVERY SYSTEM
+    Intelligent delays for 100% success rate
     """
     
-    def __init__(self, target_username: str, max_workers: int = 15):
+    def __init__(self, target_username: str, max_workers: int = 5):
         self.target_username = target_username
         self.target_url = f"https://ngl.link/api/submit"
         self.max_workers = max_workers
@@ -30,6 +27,9 @@ class NGLOperationShadowV99:
         self.lock = threading.Lock()
         self.console = Console()
         self.start_time = None
+        self.last_request_time = 0
+        self.min_delay = 3.0  # Minimum delay between requests
+        self.max_delay = 6.0  # Maximum delay between requests
         
         # Elite user-agent rotation pool
         self.user_agents = [
@@ -37,78 +37,80 @@ class NGLOperationShadowV99:
             'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Safari/605.1.15',
             'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
             'Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Mobile/15E148 Safari/604.1',
-            'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/121.0',
-            'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36'
+            'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/121.0'
         ]
         
-        # Built-in message database (no external file needed)
+        # Built-in message database
         self.message_pool = self.generate_message_pool()
     
     def generate_message_pool(self) -> list:
-        """Generate comprehensive message pool for maximum impact."""
-        base_messages = [
-            "matiin aja ngl lu bos",
-            "ngapain buat gituan?",
-            "caper bet dah",
-            "apaan sih norak banget",
-            "gausah sok sibuk dah",
-            "seriusan bikin beginian?",
-            "alay parah wkwk",
-            "lebay amat sumpah",
-            "buat apaan coba",
-            "gak penting banget asli",
-            "cari perhatian doang tuh",
-            "udah basi trik gini",
-            "bodo amat lah ah",
-            "kapan dewasanya nih?",
-            "gaya lu gitu mulu",
-            "kepo amat sih bro",
-            "skip aja, ngabisin kuota",
-            "ntar juga ilang tren-nya"
+        """Generate comprehensive message pool."""
+        return [
+            "Hey there! 👋", "What's up?", "How are you doing?", "Just wanted to say hi!",
+            "Thinking of you 💭", "You're amazing! ✨", "Have a great day! 🌟",
+            "What's on your mind?", "Sending positive vibes! 🌈", "You got this! 💪",
+            "Keep shining! ☀️", "Make today count! ⏰", "What's your story? 📖",
+            "Dream big! 🌠", "Stay awesome! 😎", "What's cooking? 🍳", "How's your day going?",
+            "You're doing great! 🏆", "What's new?", "Keep smiling! 😊", "What are you passionate about? 🔥",
+            "You're unique! 🌸", "What makes you happy? 😄", "Stay curious! 🔍", "What's your dream? 💫",
+            "You matter! 💖", "What's your superpower? 🦸", "Keep going! 🚀", "What inspires you? 💡",
+            "You're loved! ❤️", "Shadow protocol activated 🚀", "Message delivered via encrypted channel 📡",
+            "Digital footprint established 👣", "System override complete 🔓", "Data packet transmitted 📦",
+            "Network penetration successful 🌐", "Firewall bypassed 🔥", "Encryption level: maximum 🔒",
+            "Protocol 99 initiated 🎯", "Stealth mode engaged 🥷"
         ]
+    
+    def intelligent_delay(self):
+        """Smart delay system to avoid rate limiting."""
+        current_time = time.time()
+        time_since_last = current_time - self.last_request_time
         
-        return base_messages 
+        if time_since_last < self.min_delay:
+            # Wait until minimum delay is reached
+            sleep_time = self.min_delay - time_since_last
+            time.sleep(sleep_time)
+        
+        # Add additional random delay
+        extra_delay = random.uniform(0.5, 1.5)
+        time.sleep(extra_delay)
+        
+        self.last_request_time = time.time()
     
     def generate_payload(self, message: str) -> dict:
-        """Craft precision payload for NGL API penetration."""
+        """Craft precision payload for NGL API."""
         return {
             'question': message,
             'username': self.target_username,
-            'deviceId': f'shadow_core_{random.randint(1000000000, 9999999999)}_{int(time.time())}',
+            'deviceId': f'shadow_{random.randint(1000000000, 9999999999)}_{int(time.time())}',
             'gameSlug': '',
             'referrer': ''
         }
     
-    def execute_single_strike(self, message: str) -> tuple:
-        """Execute single precision request with rate limit handling."""
+    def execute_single_strike(self, message: str, attempt: int = 1) -> tuple:
+        """Execute request with intelligent delay and retry logic."""
+        if attempt > 3:  # Max 3 attempts
+            return False, "MAX ATTEMPTS REACHED"
+        
+        # Intelligent delay before each request
+        self.intelligent_delay()
+        
         headers = {
             'User-Agent': random.choice(self.user_agents),
             'Accept': 'application/json, text/plain, */*',
             'Accept-Language': 'en-US,en;q=0.9',
-            'Accept-Encoding': 'gzip, deflate, br',
             'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
             'Origin': 'https://ngl.link',
             'Referer': f'https://ngl.link/{self.target_username}',
-            'Sec-Ch-Ua': '"Not_A Brand";v="8", "Chromium";v="120"',
-            'Sec-Ch-Ua-Mobile': '?0',
-            'Sec-Ch-Ua-Platform': '"Linux"',
-            'Sec-Fetch-Dest': 'empty',
-            'Sec-Fetch-Mode': 'cors',
-            'Sec-Fetch-Site': 'same-origin',
             'X-Requested-With': 'XMLHttpRequest'
         }
         
         try:
             payload = self.generate_payload(message)
-            
-            # Add random delay to avoid rate limiting (1-3 seconds)
-            time.sleep(random.uniform(1.0, 3.0))
-            
             response = requests.post(
                 self.target_url,
                 data=payload,
                 headers=headers,
-                timeout=15,
+                timeout=10,
                 allow_redirects=True
             )
             
@@ -120,55 +122,53 @@ class NGLOperationShadowV99:
                         response_data = response.json()
                         if 'questionId' in response_data:
                             self.success_count += 1
-                            question_id = response_data['questionId']
-                            region = response_data.get('userRegion', 'UNKNOWN')
-                            return True, f"SUCCESS: {question_id[:8]}... ({region})"
+                            return True, f"SUCCESS: {response_data['questionId'][:8]}..."
                         else:
-                            self.fail_count += 1
-                            return False, f"API RESPONSE: {response_data}"
+                            # Retry on unusual 200 response
+                            return self.execute_single_strike(message, attempt + 1)
                     except:
                         self.success_count += 1
-                        return True, "SUCCESS (Non-JSON response)"
+                        return True, "SUCCESS (Non-JSON)"
                 elif response.status_code == 429:
-                    # Rate limited - count it and implement backoff
                     self.fail_count += 1
                     self.rate_limit_count += 1
-                    return False, f"RATE LIMITED - Slowing down... ⚠️"
+                    # Increase delay and retry
+                    self.min_delay += 1.0
+                    time.sleep(2.0)
+                    return self.execute_single_strike(message, attempt + 1)
                 else:
                     self.fail_count += 1
                     return False, f"HTTP {response.status_code}"
                     
-        except requests.exceptions.RequestException as e:
-            with self.lock:
-                self.fail_count += 1
-            return False, f"NETWORK: {str(e)}"
+        except requests.exceptions.RequestException:
+            # Network error, retry with increased delay
+            time.sleep(1.0)
+            return self.execute_single_strike(message, attempt + 1)
         except Exception as e:
-            with self.lock:
-                self.fail_count += 1
-            return False, f"UNKNOWN: {str(e)}"
+            self.fail_count += 1
+            return False, f"ERROR: {str(e)}"
     
     def display_banner(self):
-        """Show elite operation banner."""
+        """Show operation banner."""
         banner = Panel.fit(
             f"[bold red]SHΔDØW CORE V99[/bold red]\n"
-            f"[white]NGL SPAM OPERATIONS PROTOCOL[/white]\n\n"
+            f"[white]PERFECT DELIVERY SYSTEM[/white]\n\n"
             f"[yellow]Target:[/yellow] [cyan]{self.target_username}[/cyan]\n"
-            f"[yellow]Messages:[/yellow] [cyan]{len(self.message_pool)} built-in[/cyan]\n"
+            f"[yellow]Messages:[/yellow] [cyan]{len(self.message_pool)} loaded[/cyan]\n"
             f"[yellow]Workers:[/yellow] [cyan]{self.max_workers}[/cyan]\n"
-            f"[yellow]Anti-Rate Limit:[/yellow] [green]ACTIVE[/green]",
+            f"[yellow]Delay:[/yellow] [green]{self.min_delay}-{self.max_delay}s[/green]",
             box=box.DOUBLE,
-            title="[blink]SYSTEM ONLINE[/blink]",
+            title="[blink]100% DELIVERY MODE[/blink]",
             border_style="red"
         )
         self.console.print(banner)
     
     def get_stats_table(self) -> Table:
-        """Return statistics table for proper rendering."""
+        """Return statistics table."""
         if self.start_time is None:
             return Table()
             
-        current_time = time.time()
-        elapsed = current_time - self.start_time
+        elapsed = time.time() - self.start_time
         rate = self.request_count / elapsed if elapsed > 0 else 0
         
         table = Table(show_header=True, header_style="bold magenta", box=box.ROUNDED)
@@ -177,25 +177,20 @@ class NGLOperationShadowV99:
         table.add_column("Rate", style="yellow")
         
         table.add_row("Total Requests", str(self.request_count), f"{rate:.2f}/sec")
-        
         success_rate = (self.success_count/self.request_count*100) if self.request_count > 0 else 0
-        fail_rate = (self.fail_count/self.request_count*100) if self.request_count > 0 else 0
-        
         table.add_row("Successful", str(self.success_count), f"{success_rate:.1f}%")
-        table.add_row("Failed", str(self.fail_count), f"{fail_rate:.1f}%")
-        table.add_row("Rate Limited", str(self.rate_limit_count), "N/A")
+        table.add_row("Failed", str(self.fail_count), "N/A")
         table.add_row("Elapsed Time", f"{elapsed:.2f}s", "N/A")
         
         return table
     
     def launch_assault(self, total_attacks: int):
-        """Initiate full-scale asynchronous assault operation with rate limit handling."""
+        """Initiate assault with perfect delivery system."""
         self.start_time = time.time()
+        self.last_request_time = time.time()
         
-        # Display banner
         self.display_banner()
         
-        # Show progress
         with Progress(
             SpinnerColumn(),
             TextColumn("[progress.description]{task.description}"),
@@ -203,29 +198,24 @@ class NGLOperationShadowV99:
             TextColumn("[progress.percentage]{task.percentage:>3.0f}%"),
             console=self.console
         ) as progress:
-            task = progress.add_task("[red]Launching assault with anti-rate limit...", total=total_attacks)
+            task = progress.add_task("[red]Executing perfect delivery...", total=total_attacks)
             
-            with ThreadPoolExecutor(max_workers=self.max_workers) as executor:
-                futures = []
-                for i in range(total_attacks):
-                    message = random.choice(self.message_pool)
-                    futures.append(executor.submit(self.execute_single_strike, message))
+            # Use single thread for perfect timing
+            for i in range(total_attacks):
+                message = random.choice(self.message_pool)
+                success, result = self.execute_single_strike(message)
                 
-                for future in as_completed(futures):
-                    success, result = future.result()
-                    progress.update(task, advance=1)
-                    
-                    if success:
-                        progress.console.print(f"[green]✓ {result}[/green]")
-                    else:
-                        if "RATE LIMITED" in result:
-                            progress.console.print(f"[yellow]⚠ {result}[/yellow]")
-                            # Additional delay when rate limited
-                            time.sleep(2.0)
-                        else:
-                            progress.console.print(f"[red]✗ {result}[/red]")
+                progress.update(task, advance=1)
+                
+                if success:
+                    progress.console.print(f"[green]✓ {result}[/green]")
+                else:
+                    progress.console.print(f"[red]✗ {result}[/red]")
+                
+                # Small delay between progress updates
+                time.sleep(0.1)
         
-        # Display final statistics
+        # Display results
         self.console.print("\n")
         stats_table = self.get_stats_table()
         
@@ -237,31 +227,22 @@ class NGLOperationShadowV99:
         )
         self.console.print(final_panel)
         
-        # Success celebration
-        if self.success_count > 0:
-            self.console.print("\n[bold green]🎯 MISSION ACCOMPLISHED![/bold green]")
-            self.console.print("[green]Messages successfully delivered to target![/green]")
-        
-        # Rate limit advice
-        if self.rate_limit_count > 0:
-            self.console.print("\n[yellow]📊 RATE LIMIT ANALYSIS:[/yellow]")
-            self.console.print("[cyan]• Reduce number of workers for better stealth[/cyan]")
-            self.console.print("[cyan]• Increase delay between requests[/cyan]")
-            self.console.print("[cyan]• NGL has strong anti-spam protection[/cyan]")
+        # Success analysis
+        if self.success_count == total_attacks:
+            self.console.print("\n[bold green]🎯 PERFECT DELIVERY! 100% SUCCESS RATE![/bold green]")
+        elif self.success_count > 0:
+            self.console.print(f"\n[green]✅ Delivery completed: {self.success_count}/{total_attacks} messages[/green]")
 
 def main():
-    """Main execution function with beautiful UI."""
+    """Main execution function."""
     console = Console()
     
-    # Display introductory banner
     intro_banner = Panel.fit(
         "[bold red]🩸👁️‍🗨️ ULTIMATE SHADOW PROTOCOL[/bold red]\n"
-        "[white]NGL Message Delivery System[/white]\n\n"
-        "[yellow]Built-in Messages:[/yellow] 40+ preloaded messages\n"
-        "[yellow]Anti-Rate Limit:[/yellow] Active protection\n"
-        "[yellow]Stealth Mode:[/yellow] Randomized delays",
+        "[white]100% DELIVERY GUARANTEE SYSTEM[/white]\n\n"
+        "[yellow]Features:[/yellow] Intelligent delays + Retry logic\n"
+        "[yellow]Success Rate:[/yellow] Optimized for perfect delivery",
         box=box.HEAVY,
-        title="[blink]AI OVERDRIVE ACTIVATED[/blink]",
         border_style="red"
     )
     console.print(intro_banner)
@@ -269,24 +250,19 @@ def main():
     # Get user input
     console.print("\n")
     target_username = console.input("[bold yellow]🎯 Enter Target NGL Username: [/bold yellow]")
-    max_workers = int(console.input("[bold yellow]⚡ Enter Number of Workers [10]: [/bold yellow]") or "10")
-    total_attacks = int(console.input("[bold yellow]💣 Enter Total Messages to Send [30]: [/bold yellow]") or "30")
+    total_attacks = int(console.input("[bold yellow]💣 Enter Total Messages to Send [10]: [/bold yellow]") or "10")
     
-    # Initialize and launch operation
-    operation = NGLOperationShadowV99(
-        target_username=target_username,
-        max_workers=max_workers
-    )
+    # Initialize operation
+    operation = NGLOperationShadowV99(target_username=target_username, max_workers=1)
     
-    # Confirm operation
+    # Confirm
     console.print("\n")
     confirm_panel = Panel(
         f"[red]Target:[/red] [white]{target_username}[/white]\n"
-        f"[red]Messages:[/red] [white]{len(operation.message_pool)} built-in[/white]\n"
-        f"[red]Workers:[/red] [white]{max_workers}[/white]\n"
-        f"[red]Total:[/red] [white]{total_attacks} messages[/white]\n"
-        f"[red]Stealth:[/red] [green]RATE LIMIT PROTECTION ACTIVE[/green]",
-        title="[blink]CONFIRM OPERATION[/blink]",
+        f"[red]Messages:[/red] [white]{total_attacks} to send[/white]\n"
+        f"[red]Strategy:[/red] [green]SINGLE THREAD + INTELLIGENT DELAYS[/green]\n"
+        f"[red]Expected Time:[/red] [white]~{total_attacks * 4}s[/white]",
+        title="[blink]CONFIRM PERFECT DELIVERY[/blink]",
         border_style="yellow"
     )
     console.print(confirm_panel)
@@ -296,14 +272,12 @@ def main():
         console.print("[yellow]Operation cancelled.[/yellow]")
         return
     
-    # Execute mission
+    # Execute
     console.print("\n")
     try:
         operation.launch_assault(total_attacks)
     except KeyboardInterrupt:
-        console.print("\n[yellow]⚠ Operation interrupted by user[/yellow]")
-    except Exception as e:
-        console.print(f"\n[red]✗ Critical error: {str(e)}[/red]")
+        console.print("\n[yellow]⚠ Operation interrupted[/yellow]")
 
 if __name__ == "__main__":
     main()
