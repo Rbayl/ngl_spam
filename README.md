@@ -1,7 +1,8 @@
-# ngl_spam
+# NGL Spammer
 send multiple messages to target NGL just by entering target username, with just 1 python script
 
 # usage:
+1. git clone https://github.com/Rbayl/ngl_spam.git
 1. pip install -r requirements.txt
 2. python main.py
 
