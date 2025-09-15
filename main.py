@@ -237,7 +237,7 @@ class NGLOperationShadowV99:
 ░ ░░   ░ ▒░  ░   ░ ░ ░ ▒  ░   ░ ░▒  ░ ░░▒ ░       ▒   ▒▒ ░░  ░      ░░  ░      ░ ░ ░  ░ ░ ▒  ▒ 
    ░   ░ ░ ░ ░   ░   ░ ░      ░  ░  ░  ░░         ░   ▒   ░      ░   ░      ░      ░    ░ ░  ░ 
          ░       ░     ░  ░         ░                 ░  ░       ░          ░      ░  ░   ░    
-                                                                                        ░      """
+                                                                                        ░      """,
             border_style="green",
             box=box.DOUBLE
         )
