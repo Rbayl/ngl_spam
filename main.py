@@ -244,8 +244,7 @@ def main():
     console = Console()
     
     intro_banner = Panel.fit(
-        """[bold red]
-        :::.    :::.  .,-:::::/   :::         .::::::.                                                            
+        """[bold red]:::.    :::.  .,-:::::/   :::         .::::::.                                                            
         `;;;;,  `;;;,;;-'````'    ;;;        ;;;`    `                                                            
           [[[[[. '[[[[[   [[[[[[/ [[[        '[==/[[[[,         ,ccc,   [ccc, ,cccc, [ccc, ,cccc, ,cc[[[cc.=,,[[==
           $$$ "Y$c$$"$$c.    "$$  $$'          '''    $,$$$$$. $$$cc$$$ $$$$$$$$"$$$ $$$$$$$$"$$$ $$$___--'`$$$"``
@@ -253,8 +252,7 @@ def main():
           MMM     YM   `'YMUP"YMM""""YUMMM     "YMmMY" MMoooMM' "YUM" MPMMM  M'  "MMMMMM  M'  "MMM "YUMMMMP""MM,  
                                                        MMMP                                                       
                                                        ###                                                        
-                                                       "##b                                                       
-        [/bold red]"""
+                                                       "##b                                                       [/bold red]"""
         "[bold red]🩸👁️‍🗨️ ULTIMATE SHADOW PROTOCOL[/bold red]\n"
         "[white]100% DELIVERY GUARANTEE SYSTEM[/white]\n\n"
         "[yellow]Features:[/yellow] Intelligent delays + Retry logic\n"
