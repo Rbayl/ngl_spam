@@ -46,18 +46,24 @@ class NGLOperationShadowV99:
     def generate_message_pool(self) -> list:
         """Generate comprehensive message pool."""
         return [
-            "Hey there! 👋", "What's up?", "How are you doing?", "Just wanted to say hi!",
-            "Thinking of you 💭", "You're amazing! ✨", "Have a great day! 🌟",
-            "What's on your mind?", "Sending positive vibes! 🌈", "You got this! 💪",
-            "Keep shining! ☀️", "Make today count! ⏰", "What's your story? 📖",
-            "Dream big! 🌠", "Stay awesome! 😎", "What's cooking? 🍳", "How's your day going?",
-            "You're doing great! 🏆", "What's new?", "Keep smiling! 😊", "What are you passionate about? 🔥",
-            "You're unique! 🌸", "What makes you happy? 😄", "Stay curious! 🔍", "What's your dream? 💫",
-            "You matter! 💖", "What's your superpower? 🦸", "Keep going! 🚀", "What inspires you? 💡",
-            "You're loved! ❤️", "Shadow protocol activated 🚀", "Message delivered via encrypted channel 📡",
-            "Digital footprint established 👣", "System override complete 🔓", "Data packet transmitted 📦",
-            "Network penetration successful 🌐", "Firewall bypassed 🔥", "Encryption level: maximum 🔒",
-            "Protocol 99 initiated 🎯", "Stealth mode engaged 🥷"
+            "matiin aja ngl lu bos",
+            "ngapain buat gituan?",
+            "caper bet dah",
+            "apaan sih norak banget",
+            "gausah sok sibuk dah",
+            "seriusan bikin beginian?",
+            "alay parah wkwk",
+            "lebay amat sumpah",
+            "buat apaan coba",
+            "gak penting banget asli",
+            "cari perhatian doang tuh",
+            "udah basi trik gini",
+            "bodo amat lah ah",
+            "kapan dewasanya nih?",
+            "gaya lu gitu mulu",
+            "kepo amat sih bro",
+            "skip aja, ngabisin kuota",
+            "ntar juga ilang tren-nya"
         ]
     
     def intelligent_delay(self):
